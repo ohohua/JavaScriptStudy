@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box1 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: absolute;
+      }
+      #box2 {
+        width: 100px;
+        height: 100px;
+        background-color: cadetblue;
+
+        position: absolute;
+        top: 100px;
+        left: 100px;
+      }
+    </style>
+    <script>
+
+      window.onload = function () {
+        
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        //为box1绑定一个onmousedown
+        drag(box1);
+        drag(box2);
+      };
+
+
+      
+      function drag(obj){
+        obj.onmousedown = function (event) {
+          obj.setCapture && obj.setCapture();
+          event = event || window.event;
+          var ol = event.clientX - obj.offsetLeft;
+          var ot = event.clientY - obj.offsetTop;
+          document.onmousemove = function (event) {
+            event = event || window.event;
+            var x = event.clientX - ol;
+            var y = event.clientY - ot;
+            obj.style.left = x + "px";
+            obj.style.top = y + "px";
+          };
+          //绑定onmouseup 当鼠标松开时，放在document。
+          //onmousedown里面是为了确保只有鼠标在操作box1是才会触发一些列操作
+          document.onmouseup = function () {
+            document.onmousemove = null;
+
+            document.onmouseup = null;
+            obj.releaseCapture && obj.releaseCapture();
+            // alert("松开了");
+          };
+          /*
+         当我们拖拽一个网页内容时，浏览器会默认去搜索引擎中搜索内容，
+         此时会导致拖拽功能的异常，这时浏览器的默认行为，
+         如果不希望发生这个行为，可以通过return false来取消默认行为 
+         但是这招对IE8不起作用
+        */
+          return false;
+        };
+      }
+    </script>
+  </head>
+  <body>
+    我是文字
+    <div id="box1"></div>
+    <div id="box2"></div>
+  </body>
+</html>

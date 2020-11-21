@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // 箭头函数是用来简化函数定义语法的
+      //箭头函数调用方式
+      const fn = () => {
+        console.log(1233);
+      }
+      fn();
+      // 当函数体中只有1句代码的，且代码执行的结果就是返回值，可以省略掉{}
+      // 当函数的形参只有一个形参是，可以省略掉()
+      //ex： 分别用两种方式来写一个求和函数
+
+      // 1. 普通函数
+      console.log('普通函数');
+      function fun1(x, y) {
+        return x + y;
+      }
+      console.log(fun1(1, 2));
+      // 2.箭头函数
+      console.log('箭头函数');
+      let fun2 = (x, y) => x + y ;
+      console.log(fun2(1, 2));
+      
+
+      console.log('---形参只有一个省略()---');
+      let fun3 = v => v*2;
+      console.log(fun3(3));
+  </script>
+</body>
+</html>

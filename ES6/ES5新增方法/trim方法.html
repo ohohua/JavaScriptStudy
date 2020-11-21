@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text">
+  <button>确定</button>
+  <div></div>
+  <script>
+    //trim()方法消除两侧的空格
+    /* 
+      应用举例
+     */
+    var input = document.querySelector('input');
+    var btn = document.querySelector('button');
+    var div = document.querySelector('div');
+    btn.onclick = function(){
+      //如果输入了    123    这种前后都带有空格的内容
+      if(input.value.trim() === ''){
+        alert('请输入内容');
+      }else {
+        div.innerHTML = input.value.trim();
+      }
+    }
+  </script>
+</body>
+</html>

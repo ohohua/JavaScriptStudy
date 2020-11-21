@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var str1 = "abojkoaonbnanlna";
+    /*
+    split() 
+    可以将一个字符按照传入的参数穿拆分成一个数组，
+    可以传入一个正则表达式
+    */
+    var arr = str1.split(/a/i);
+    console.log(arr); 
+    /*
+    search()
+    可以检查字符串中是否有指定的内容
+    可以传一个正则表达式作为参数
+    返回值：
+        如果搜索到这个内容，则返回在这个内容在字符串中的索引。
+        如果没有找到这个内容分。则返回-1
+    */
+    var email = "1262097502@qq.com";
+    var num = email.search(/26209750/);
+    console.log(num);
+    /*
+    match()
+    可以传入一个正则表达式，来把字符串中符合条件的内容提取出来
+    找到后会停止检索，可以设置匹配模式为全局匹配，这样就可以把
+    全部的提取出来,即使只有一个元素，也会提取出来放在一个数组里面
+    */
+    var str2 = "abcABCop00wda--1";
+    var m = str2.match(/[a-z]/g);
+    console.log(m);
+    /*
+    replace()
+    可以将字符串指定的内容替换为新内容
+    参数： 
+      1.被替换的内容，可以传入正则表达式
+      2.新的内容(也可以是空字符串，达到删除的目的)
+    默认值替换检索到的第一个内容，可以开启全局匹配来替换全部
+    */
+    var str3 = "1262097502@qq.com";
+    var s = str3.replace(parseInt(str3),"525699848");
+    console.log(s);
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

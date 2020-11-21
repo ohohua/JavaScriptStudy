@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Father(uname, age) {
+        this.uname = uname;
+        this.age = age;
+      }
+      Father.prototype.dayin = function () {
+        console.log(this.uname + this.age);
+      };
+      function Son(uname, age, grade) {
+        Father.call(this, uname, age);
+        this.grade = grade;
+      }
+      /* 下面这两步分别是: 
+         1.实例化Father并将实例对象赋值给子构造函数的原型对象
+         2.通过直接赋值的这种操作会将Son原型中的construcor方法覆盖掉，所以需要重新让constructor指向Son
+       */
+      Son.prototype = new Father();
+      Son.prototype.constructor = Son;
+      //现在实例化Son，就可以通过son来调用dayin()函数
+      /* 
+        寻找方式：
+                ->  son发现自己的里面没有dayin()方法 
+                ->  于是就去自己的原型对象中去找  
+                ->  son的原型对象现在就是Father的一个实例对象
+                ->  通过原型链在Father.prototype中找到了dayin()方法(实例对象.__proto__.dayin())
+       */
+      var son = new Son("刘德华", 18, 100);
+      son.dayin();
+    </script>
+  </body>
+</html>

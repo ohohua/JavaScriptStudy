@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var i = 0;
+        var count = document.getElementById("count");
+        var timer = setInterval(function () {
+          count.innerHTML = i++;
+          if(i==30){
+            clearInterval(timer);
+          }
+        }, 30);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="count"></div>
+  </body>
+</html>

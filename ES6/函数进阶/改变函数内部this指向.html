@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>bind</button>
+    <button>bind1</button>
+    <button>bind2</button>
+    <script>
+      //改变函数内this的指向 js提供了3种方法 call()  apply()  bind()
+
+      // 1.call()
+      var o = {
+        name: "andy",
+      };
+      function fn(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      fn.call(o, 1, 2);
+      // call第一个可以调用函数，第二个可以改变函数内部this指向
+      // call的主要作用可以实现继承 👇
+      function Father(uname, age, sex) {
+        this.uname = uname;
+        this.age = age;
+        this.sex = sex;
+      } //父类构造函数
+      function Son(uname, age, sex) {
+        Father.call(this, uname, age, sex); //调用父类构造函数，将父类中的this设置为子类中的this，同时传入子类的参数
+      }
+      var son = new Son("刘德华", 18, "男");
+      console.log(son);
+
+
+
+      // 2.apply()  应用 运用的意思
+      var o2 = {
+        name: "Rick",
+      };
+      function fn1(arr) {
+        console.log(this);
+        console.log(arr); // 传过来的是'pink'，没有数组的[]了
+      }
+      fn1.apply(o2, ["pink"]);
+      // 1.也是调用函数，第二个可以改变函数内部this的指向
+      // 2.但它的参数必须是数组(伪数组)
+      // 3.apply 的主要应用 比如说我们可以利用 apply 借助于数学内置对象求最大值
+      // Math.max();
+      var arr = [1, 55, 99, 15];
+      // console.log(Math.max.apply(null,arr)); //此时不需要改变Math中的this指向，所以指向Math自己就好，指向null不好
+      console.log(Math.max.apply(Math, arr)); //apply会将数组的[]外衣去掉
+      console.log(Math.max(1, 55, 99, 15)); //不用apply的话只能使用这种方式使用Math.max()
+
+
+
+
+      // 3.bind() 绑定 捆绑的意思
+      var o3 = {
+        name: "Lily",
+      };
+      function fn3(a, b) {
+        console.log(this);
+        console.log(a + b);
+      }
+      var f = fn3.bind(o3, 1, 2);
+      f(); //{name: "Lily"}
+      // 1.不会调用原来的函数   可以改变原来函数内部this指向
+      // 2.返回的是 原函数改变this之后的 新函数
+      // 3.如果有的函数不需要立即调用，又想改变这个函数内部的this指向，此时用bind()
+      // ex：我们有一个按钮，当我们点击了之后，就禁用这个按钮，3秒之后开启这个按钮
+      var btn = document.querySelector("button");
+      btn.onclick = function () {
+        this.disabled = true; //true禁用,这个this指向的是btn这个按钮
+        //开始计时
+        //  var that = this;   //老方法
+        setTimeout(
+          function () {
+            //  that.disabled = false;  //（老方法）定时器里面的this指向的是window
+            this.disabled = false;
+          }.bind(this), //在这里改变this指向，这里的this是指向btn的(因为在function外面)
+          3000
+        );
+      };
+      // 上面bind里面写this的好处还不能体现出来，当按钮变多了之后 ex：👇
+/*       var btns = document.querySelectorAll("button");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].onclick = function () {
+          this.disabled = true;
+
+          setTimeout(
+            function () {
+              this.disabled = false;
+            }.bind(this),
+            3000
+          );
+        };
+      } */
+    </script>
+  </body>
+</html>

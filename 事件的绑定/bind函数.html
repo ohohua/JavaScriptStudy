@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var btn01 = document.getElementById("btn01");
+        bind(btn01, "click", function () {
+          alert(this);
+        });
+        // bind(btn01, "click", function () {
+        //   alert("w");
+        // });
+        // bind(btn01, "click", function () {
+        //   alert("2");
+        // });
+      };
+      //addEventListener()大部分浏览适合使用的
+
+      /*
+        这里面的this是绑定事件的对象
+        参数：
+            1.事件的字符串，不要on
+            2.回调函数，当时间触发是才会被调用
+            3。是否在捕获阶段触发事件，需要布尔值，一般写false
+      */
+      //attachEvent()这个适合IE8   如果绑定多个，执行顺序是后绑定先执行
+      /*
+        这里面的this是window
+        参数：
+            1.事件的字符串，要on
+            2.回调函数
+            
+     */
+      //现在我们需要同时兼容几种不同的浏览器，所以我们可以写一个绑定bind函数来完成
+      //还需要统一两个方法中的this
+      function bind(obj, eventStr, callback) {
+        if (obj.addEventListener) {
+          //大部分浏览器使用的
+          obj.addEventListener(eventStr, callback, false);
+        } else {
+          //IE8及以下的
+          obj.attachEvent("on" + eventStr, function () {
+            //这个function是一个匿名函数，可以在函数中调用回调函数，让浏览器window调匿名函数，
+            //我们通过匿名函数去调callback，这样的话我们就可以为callback指定this了，
+            //因为this是由谁调用决定的，谁调用this，this就指的是谁
+            callback.call(obj); //-call(对象)  可以将该方法中的this值设置为obj
+          }); //this是由调用方式决定的
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <button id="btn01">按键</button>
+  </body>
+</html>

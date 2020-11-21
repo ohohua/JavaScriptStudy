@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.经典面试题var
+    var arr = [];
+    for(var i = 0; i < 2 ; i++) {
+      arr[i] = function (){
+        console.log(i);
+      }
+    }
+    arr[0]();   //2
+    arr[1]();   //2
+
+    console.log('-----------------------------');
+
+    // 2.经典面试题 let
+
+    var arr2 = [];
+    for(let i = 0; i < 2 ; i++) {
+      arr2[i] = function(){
+        console.log(i);
+      }
+    }
+    arr2[0]();   //0
+    arr2[1]();   //1
+
+
+    /* 
+      题1 和 题2 的区别就是 ： 
+      每一次循环时, 使用let关键字时，在每一次循环时就睡产生一个块级作用域，
+      分别存放着i=0，i=1，i=2  .
+      函数执行时输出的是自己上一级循环产生的块级作用域下的值
+     */
+
+
+     //const 也具有块级作用域
+     if(true) {
+       const a = 111;
+       if(true){
+         const a = 222;
+         console.log(a);  //222
+       }
+       console.log(a);  //111
+     }
+     console.log(a);   //undefine
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button></button>
+    <script>
+      //定义函数的方式
+
+      // 1.自定义函数(命名函数)
+      function fn() {}
+      // 2.函数表达式(匿名函数)
+      var fun = function () {};
+      // 3.利用new Function('参数1','参数2','函数体')
+      var f = new Function("a", "b", "console.log(a+b)");
+      f(1, 2);
+      // 4.所有的函数都是Function的实例(对象)
+      console.dir(f); //里面有_-proto__ 说明是对象
+      // 5.函数也属于对象
+      console.log(f instanceof Object); //true
+
+      //函数调用方式
+
+      // 1.普通函数
+      function fn1() {
+        console.log("大众探歌");
+      }
+       fn1();  //fn1.call();
+
+      // 2.对象的方法
+      var obj = {
+        sayHi: function () {
+          console.log("大众探歌");
+        },
+      };
+      obj.sayHi();
+
+      // 3.构造函数
+      function Star() {}
+      new Star();
+
+      // 4.绑定事件函数
+      var btn = document.querySelector("button");
+      btn.onclick = function () {};
+      //点击按钮就可以调用这个函数
+
+      // 5.定时器函数
+      setInterval(function () {console.log('定时器');}, 1000);
+        //这个函数是定时器自动一秒钟调用一次
+
+      // 6.立即执行函数
+        (function () {
+          console.log("大众速腾");
+        }
+      )();
+      //立即执行函数是自动调用
+    </script>
+  </body>
+</html>

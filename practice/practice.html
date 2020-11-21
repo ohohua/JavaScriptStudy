@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice</title>
+    <script>
+        /*
+        *定义一个单击响应函数：
+        *
+        */ 
+        function myClick(node,fun){
+            var btn = document.getElementById(node);
+            btn.onclick = fun;
+        }
+        /*
+        var obj = new Object();
+        obj.var = "本·哈登";
+        console.log(obj.var);
+        // alert("警告");
+        var obj2 = {
+             name: "孙杨",
+             age: 12,
+             obj3: {neme :"孙坚"}
+        };
+        console.log(obj2.obj3);
+        function fun(){
+            document.write("函数");
+        }
+        fun();
+        function fun1(a,b,c){
+            var sum = a+b+c;
+            return sum;
+        }
+        console.log("sum="+fun1(2,"abc","$$")); 
+        function mul(){
+            for(var i = 1;i <= 9;i++){
+                for(var j = 1;j <= i;j++){
+                    console.log("i*j="+i*j);
+                    // console.log("\n");
+                }
+            }
+    }
+    */
+     //window.onload 可以让这段程序在DOM对象加栽完毕后再执行
+    window.onload = function(){      
+        //获取到button对象
+   /*     var btn = document.getElementById("btn");
+        function fun2(){
+        btn.innerHTML = "I'am a button"; //修改按钮的文字
+        }
+        //为按钮绑定处理函数来响应事件
+        btn.onclick = function(){
+            alert("点我干嘛！");
+        };
+*/
+        //获取按钮的节点
+        var btn01 = document.getElementById("btn01");
+        //为btn01绑定一个点击响应函数
+        btn01.onclick = function(){
+        //查找#bj节点
+        var bj = document.getElementById("bj");
+        alert(bj.innerHTML);
+        console.log(bj);
+        };
+        //查询所有的li标签
+        var btn02 = document.getElementById("btn02");
+        btn02.onclick = function(){
+            var lis = document.getElementsByTagName("li");
+            alert(lis.length);
+            for(var i=0; i<lis.length; i++)
+            alert(lis[i].innerHTML);
+        }
+        //获取btn03
+        var btn03 = document.getElementById("btn03");
+        // btn03.id = 1;
+        // console.log(btn03.id);
+        btn03.onclick = function(){
+                        //查找name = gender的所有结点
+        var inputs = document.getElementsByName("gender");
+            alert(inputs.length);
+            for(var i=0; i<inputs.length; i++)
+            alert(inputs[i].value);
+        }
+           
+        btn03.onclick = function(){
+            var inputs = document.getElementsByTagName("input");
+            for(var i=0; i<inputs.length; i++ ) 
+            alert(inputs[i].type)
+        }
+        //直接封装成函数
+        myClick("btn04",function(){
+            // alert("查找父节点");
+            var loc = document.getElementById("loc");
+            alert(loc.parentNode);
+        });
+        var fc = document.getElementById("bj");
+        alert(fc.childNodes[0].nodeValue);
+    } 
+
+    //图片切换的练习
+    // window.onload = function(){
+    //     var imgArr = ["image/2.jpg","image/1.jpg"];
+    //     var index = 0;
+    //     var prev = document.getElementById("prev");
+    //     var next = document.getElementById("next");
+    //     var info = document.getElementById("info");
+    //     prev.onclick = function(){
+    //         var photo = document.getElementsByTagName("img")[0];
+    //             index--;
+    //             if(index < 0)
+    //             index = 1;
+    //             photo.src = imgArr[index];
+    //             info.innerHTML="第"+(index+1)+"张，共"+imgArr.length+"张";
+
+    //     } 
+    //     next.onclick = function(){
+    //         var photo = document.getElementsByTagName("img")[0];
+    //         index++;
+    //         if(index > imgArr.length-1)
+    //         index = 0;
+    //         photo.src = imgArr[index];
+    //         info.innerHTML="第"+(index+1)+"张，共"+imgArr.length+"张";
+
+    //     };
+    </script>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    #outer{
+        width: 700px;
+        margin: 50px auto;
+        background-color: greenyellow;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <button id="btn01">我是第一个按钮</button>
+</br>
+    <button id="btn02">查找所有li标签</button>
+</br>
+    <button id="btn03">查找所有name等于gender的节点</button>
+</br>
+    <button id="btn04">查找父节点</button>
+    <div id="loc">
+        <ul>
+            <li id="bj">北京</li>
+            <li id="sh">上海</li>
+            <li id="se">首尔</li>
+        </ul>
+    </div>
+    <form>
+    gender:
+    <input type="radio" name="gender" value="male" />
+    male
+    <input type="radio" name="gender" value="female" />
+    female
+    <br>
+    <br>
+    </form>
+    <!-- <div id="outer">
+        <p id="info">第1张，共2张</p>
+        <img src="image/1.jpg" alt="魔方">
+        <button id="prev"><上一张</button>
+        <button id="next">下一张></button>
+    </div> -->
+</body>
+</html>

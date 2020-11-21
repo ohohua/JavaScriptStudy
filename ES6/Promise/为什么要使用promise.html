@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么要使用promise</title>
+</head>
+<body>
+  <script>
+     console.log("----------分割线----------");
+      //promise执行步骤分析
+      
+      console.log(1);
+      new Promise(function (resolve, reject) {
+        reject(true);
+        window.setTimeout(function () {
+        }, 0);
+      }).then(
+        function () {
+          console.log(2);
+        },
+        function () {
+          console.log(3);
+        }
+      );
+      console.log(4);
+      // 输出143
+      /* 
+        1.首先整段js从上到下执行，遇到 console.log(1) 输出了1；
+
+        2.遇到了 new Promise(function(resolve,reject){})。继续往里看，遇到了 reject(true)。
+          此时的promise的状态由pending变成了rejected。
+
+        3.再往下看，是一个setTimeout，setTimeout方法内部的操作将会被丢到下一个宏任务的队列中执行，即使时间为0。
+          执行完function内部看.then()了。then()内部的操作将丢到微任务队列里面等待执行。
+
+        4.继续向下看，遇到console.log(4) 输出4
+
+        5.此时这个宏任务已经执行完啦，开始执行微任务。微任务队列中有个 .then(), 
+          .then()方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为resolved时调用，
+          第二个回调函数是Promise对象的状态变为rejected时调用。其中，第二个函数是可选的。
+          此时的promise的状态是rejected，于是走的是第二个function(){}，也就是console.log(3),于是便输出了3
+
+        6.微任务队列也执行完了，开始执行下一轮的宏任务，也就是setTimeout内部的操作，
+        但是此时的resolve(false)并不能改变promise的状态，因为promise的状态一旦改变了就一直保持这个状态不会再发生变化了。
+       */
+       /* 
+       宏任务
+        (macrotask)（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）。
+       微任务
+         microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务。也就是说，在当前task任务后，下一个task之前，在渲染之前。   
+
+        主要宏任务：整段脚本script setTimeout setInterval、I/O UI交互事件 postMessage MessageChannel setImmediate(Node.js 环境)
+        主要微任务：promise.then catch finally  process.nextTick(Node使用) MutationObserver（浏览器使用）
+        */
+        /* 
+          宏任务和微任务执行流程：
+          整段脚本script作为宏任务开始执行遇到微任务将其推入微任务队列，
+          宏任务推入宏任务队列宏任务执行完毕，检查有没有可执行的微任务发现有可执行的微任务，
+          将所有微任务执行完毕当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染渲染完毕后，
+          JS线程继续接管，开始新的宏任务，反复如此直到所有任务执行完毕
+
+          注意点：
+            Promise和async中的立即执行
+            我们知道Promise中的异步体现在then和catch中，所以写在Promise中的代码是被当做同步任务立即执行的。
+            而在async/await中，在出现await出现之前，其中的代码也是立即执行的。那么出现了await时候发生了什么呢？
+
+         */
+
+  </script>
+</body>
+</html>

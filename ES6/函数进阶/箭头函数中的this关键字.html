@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数</title>
+</head>
+<body>
+  <script>
+    // 箭头函数不绑定this 箭头函数没有  自己的this的关键字
+    // 如果在箭头函数中使用this this的指向箭头函数定义位置上下文中this
+    const obj = {name:'xxx'};
+    function fn() {
+      console.log(this);
+      return () => {
+        console.log(this);   //箭头函数中的this执行fn中的this
+      }
+    }
+     const resFn = fn.call(obj);  //{name:'xxx'}
+     resFn();       //{name:'xxx'}
+
+
+    console.log('-----我是无情的分割线-----');
+    //箭头函数面试题
+    var name = '罗大爷';
+    var obj2 = {
+      name:'李大爷',
+      say: () => {
+        alert(this.name);   //this 指向window
+      }
+    }
+    obj2.say(); // 全局中的'罗大爷'
+  </script>
+</body>
+</html>

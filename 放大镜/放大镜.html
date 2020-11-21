@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>放大镜</title>
+    <script>
+      window.onload = function () {
+        var small = document.getElementById("small");
+        var mask = document.getElementById("mask");
+        var big = document.getElementById("big");
+        small.onmouseover = function () {
+          mask.style.display = "block";
+          big.style.display = "block";
+        };
+        small.onmouseout = function () {
+          mask.style.display = "none";
+          big.style.display = "none";
+        };
+        small.onmousemove = function (event) {
+          event = event || window.event;
+          var x = event.clientX - mask.offsetWidth / 2;
+          var y = event.clientY - mask.offsetHeight / 2;
+
+          //限制移动范围
+          x = x < 0 ? 0 : x;
+          y = y < 0 ? 0 : y; 
+
+          x =
+            x > small.offsetWidth - mask.offsetWidth
+              ? small.offsetWidth - mask.offsetWidth
+              : x;
+          y =
+            y > small.offsetWidth - mask.offsetWidth
+              ? small.offsetWidth - mask.offsetWidth
+              : y;
+          mask.style.left = x + "px";
+          mask.style.top = y + "px";
+          //放大功能
+          var maskMoveMaxX = small.offsetWidth - mask.offsetWidth;  //maskMoveMaxX：遮挡层移动的x最大距离
+          var maskMoveMaxY = small.offsetHeight - mask.offsetHeight;
+          var bigMoveMaxX = big.children[0].offsetWidth - big.offsetWidth; //bigMoveMaxX：大图的最大x移动距离
+          var bigMoveMaxY = big.children[0].offsetHeight - big.offsetHeight;
+
+          var bigImgX = x * bigMoveMaxX / maskMoveMaxX;
+          var bigImgY = y * bigMoveMaxY / maskMoveMaxY;
+          //因为    遮挡层的移动距离/大图的移动距离 = 遮挡层的最大移动距离/大图的最大移动距离
+          //所以    大图的移动距离 = 遮挡层的移动距离*大图的最大移动距离/遮挡层的最大移动距离
+          big.children[0].style.marginLeft = -bigImgX + 'px';
+          big.children[0].style.marginTop = -bigImgY + 'px'; 
+        };
+      };
+      
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box {
+        position: relative;
+        display: inline-block;
+      }
+      #small {
+        position: relative;
+        width: 350px;
+        z-index: 10;
+      }
+      #mask {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        background-color: yellow;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        display: none;
+      }
+      #big {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        top: 0;
+        left: 351px;
+        overflow: hidden;
+        display: none;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="small">
+        <img src="img\遗迹.jpg" width="350px" height="328.7px" alt="" />
+        <div id="mask"></div>
+      </div>
+      <div id="big">
+        <!-- 100/350 = 400/x  => x = 1400 -->
+        <img src="img\遗迹.jpg" width="1400px" alt="" /> 
+      </div>
+    </div>
+  </body>
+</html>

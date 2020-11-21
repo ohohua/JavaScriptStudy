@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload = function(){
+      //创建一个对象
+      var obj = new Object();
+      //创建一个函数(构造函数)
+      console.log(obj);
+      function Fun(){
+         this.name = "李白";
+        //  alert("fun");
+      }
+      //当作构造函数使用
+      var f = new Fun();
+
+      console.log(f);   //Fun {name: "李白"}
+      //当作普通函数使用
+      var f1 = Fun();
+      console.log(f1);  //undefined
+      console.log(Fun);
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

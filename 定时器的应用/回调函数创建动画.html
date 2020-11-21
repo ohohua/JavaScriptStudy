@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #box1 {
+      /* margin: 0 auto; */
+      height: 0;
+      width: 0;
+      left: 300px;
+      border-top: blue solid;
+      border-right: tan solid;
+      border-bottom: tomato solid;
+      border-left: violet solid;
+      position: absolute;
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      var box1 = document.getElementById("box1");
+      var btn01 = document.getElementById("btn01");
+
+      btn01.onclick = function () {
+        move(box1, "width", "height", 10, function () {
+          // alert(getStyle(box1,"width"));
+          move(box1, "height", "width", 15, function () {
+            
+          });
+        });
+      };
+
+      function move(obj, attrWidth, attrHeight, speed, callback) {
+        var newValue = 0;
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+          newValue += 10;
+          if (newValue >= 500) {
+            clearInterval(obj.timer);
+            newValue = 0;
+            callback && callback();
+          } else {
+            obj.style[attrHeight] = 1;
+            obj.style[attrWidth] = newValue + speed + "px";
+          }
+        }, 30);
+      }
+    };
+  </script>
+  <body>
+    <div id="box1"></div>
+    <br /><br />
+    <button id="btn01">开始</button>
+  </body>
+</html>

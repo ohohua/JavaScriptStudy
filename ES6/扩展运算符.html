@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+      let arr = [1, 2, 3];
+      console.log(...arr);  // 将逗号作为分割符 打印出 1 2 3
+
+      console.log(1, 2, 3); // 1 2 3
+
+      // 扩展运算符(...)的应用  
+      // 1. 扩展数组
+      let ary1 = [1,2,3];
+      let ary2 = [4,5,6];
+      let ary3 = [...ary1,...ary2];
+      console.log(ary3);    //[1,2,3,4,5,6]
+      //也可以利用push方法
+
+      // 2.将类数组转化为真正的数组,这样就可以调用数组的方法了
+      let oDivs = document.getElementsByTagName('div');
+      let oDivs2 = [...oDivs];
+      oDivs2.push('div');   //现在可以调用数组的方法了
+      console.log(oDivs);
+      console.log(oDivs2);
+      
+      //将类数组和可遍历对象转为数组的另外一种方法  
+      /*
+         Array.from()
+          参数：1.需要转化的类数组或者可遍历的对象
+                2.function(){}  类似与map方法
+          ex:
+            let newArr = Array.from(arrLike,item => item * 2);
+      */
+      let arrayLike = {
+        '0':'云长',
+        '1':'11',
+        '2': '王世充',
+        length:2
+      }
+
+      let arr2 = Array.from(arrayLike);
+      console.log(arr2);
+
+      let arrLike2 = {
+        '0': 1,
+        '1': 2,
+        '2': 3,
+        '3': 4,
+        length:4      //规定长度为4
+      }
+      let newArr = Array.from(arrLike2,item => item * 2);
+      // let newArr1 = Array.from(arrayLike,item => item * 2);
+      console.log(newArr);
+      // console.log(newArr1);
+    </script>
+  </body>
+</html>

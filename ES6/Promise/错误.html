@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fun() {
+      if(Date.now() %2 === 0){
+        console.log('当前时间是奇数，可以执行');
+      } else {
+        throw new Error('当前时间是偶数，无法执行');   //自己抛出异常
+      }
+    }
+    try{    //捕获处理异常
+      fun();
+    } catch(error){
+      alert(error.message);
+    }
+  </script>
+</body>
+</html>

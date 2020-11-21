@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.将函数作为参数
+    function fn(callback){
+      callback && callback();
+    }
+    fn(function(){
+      alert('hi');
+    })
+
+    // 2.将函数作为返回值返回
+    function fn2(){
+      return function(){
+        console.log('i miss you');
+      };
+    }
+    fn2();
+  </script>
+</body>
+</html>

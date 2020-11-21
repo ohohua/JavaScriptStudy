@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fn (x,y){
+      console.log(this + x + y);
+    }
+    function fn2  (){
+      console.log('我是fn2');
+    }
+    fn.call(fn2,1,2);
+    /* 
+      call()  这个函数是用来修改运行时this的指向 
+      参数：(参数可写可不写，不写的话就是fn.call()  
+            call的意思是调用fn )
+            thisArg:被this指向的对象 
+            arg1：参数1，传给被调函数     
+            arg2:参数2传给被调函数
+    */
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        该方法用来遍历(迭代)数组,会一直循环到最后一个元素位置，
+        return false，  or  return true， 都不能使其停止 
+      */
+      var arr = [10, 9, 21, 5, 60];
+      var sum = 0;
+
+      arr.forEach((value) => {
+        sum += value;
+      });
+      console.log(sum);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+             // 浅拷贝只是拷贝一层，更深层次对象级别的只拷贝引用(地址)
+             // 深拷贝拷贝多层，每一级别的数据都会拷贝
+             var obj = {
+               id: 1,
+               name: "andy",
+               msg: {
+                 age: 18,
+               },
+             };
+             // 浅拷贝
+             var o = {};
+             console.log("----------for循环实现浅拷贝------------");
+             // for(var k in obj){
+             //   // k是属性名  obj[k]是属性值
+             //   o[k] = obj[k];
+             // }
+             console.log("----------浅拷贝新方法assign-----------");
+             Object.assign(o, obj); //浅拷贝新方法语法糖，把obj拷贝给o
+
+             console.log(o); //{id: 1, name: "andy", msg: {…}}
+             /*
+             拷贝的是msg的地址，此时修改o.msg的值会影响obj.msg的值
+             ex:👇
+            */
+             o.msg.age = 20;
+             console.log("o.msg.age:" + o.msg.age);
+             console.log("obj.msg.age:" + obj.msg.age);
+
+             // 深拷贝  利用递归
+             var obj2 = {
+               id: 1,
+               name: "andy",
+               msg: {
+                 age: 18,
+               },
+               color:['pink','red']
+             };
+             var o2 = {};
+             //封装函数
+             function deepCopy(newobj,oldobj) {
+               for(var k in oldobj){
+                 //判断我们的属性值属于哪种数据类型
+                 // 1.获取我们的属性值 oldobj[k]
+                  var item = oldobj[k];
+                  
+                  if(item instanceof Array) {     //注意Array也属于对象，所以要先判断数组
+                  // 2.判断这个值是否是数组
+                    newobj[k] = [];
+                    deepCopy(newobj[k],item);
+                  }else if(item instanceof Object){
+                    // 3.判断这个值是否是对象
+                    newobj[k] = {};
+                    deepCopy(newobj[k],item);
+                  } else {
+                    // 4.都不是的话就是简单数据类型
+                    newobj[k] = item;
+                  }
+
+
+               }
+             }
+             deepCopy(o2, obj2);
+             console.log(o2);
+    </script>
+  </body>
+</html>

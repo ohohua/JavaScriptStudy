@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      1.class的本质就是function
+      2.class所有方法都定义在prototype中
+      3.class创建的实例里面也有__proto__ 指向class的prototype原型对象
+      4.所以ES6的类的绝大部分功能在ES5中也可以做到，新的写法只是更加简单方便
+      5.所以，ES6中的类就是一种语法糖
+      语法糖： 两种可以实现同样功能的方法相比较更加简单方便的那种就被称之为语法糖
+     */
+    class Star{
+
+    }
+    console.log(typeof Star); //function
+    console.log(Star.prototype); //class里面也有原型
+    console.log(Star.prototype.constructor);  //；类也可以通过constructor指回Star
+    
+    Star.prototype.sing = function(){  // 也可以通过原型对象来添加方法
+      console.log('传奇');
+    }
+    var ldh = new Star();
+    console.log(ldh);
+  </script>
+  
+</body>
+</html>

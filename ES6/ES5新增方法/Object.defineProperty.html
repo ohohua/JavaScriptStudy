@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      id: 1,
+      name: '李华',
+    }
+    // 1.以前添加属性
+    // obj.num = 123;
+
+    // 2.使用Object.defineProperty()方法定义新属性或者修改原有属性
+    Object.defineProperty(obj,'num',{
+      //第三个参数有4个属性
+      /* 
+        1.value，设置属性的值，默认undefine
+        2.writable，值是否可以重写，true/false，默认为false
+        3.enumerable，目标属性是否可以被枚举，true/false，默认为false
+        4.configurable，目标属性是否可以被删除或者是否可以再次被修改特性，true/false，默认为false
+          (修改特性：就是第三个参数里面设置的所有属性是true可以之后被修改)
+       */
+       value: 123,
+       writable:true,      // 意味着开始添加的num值现在可以被修改
+      //  writable:true,
+    })
+    console.log(obj);
+    //writable && configurable
+/*     Object.defineProperty(obj,'num',{
+      configurable:true,  //注意这里已经修改不了了  
+    }) */
+    //修改num
+     obj.num = 3;
+    console.log(obj); // num:3
+    //enumerable
+    Object.defineProperty(obj,'id',{
+      enumerable:false,
+    })
+    var newArr = Object.keys(obj);  //枚举对象obj，会返回一个可以被枚举的属性的数组。现在id的enumerable设置成false之后，id已经不可枚举了
+    console.log(newArr);  //['name']
+    Object.defineProperty(obj,'num',{})
+
+  </script>
+</body>
+</html>

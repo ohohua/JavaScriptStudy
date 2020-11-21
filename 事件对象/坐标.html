@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    #b01{
+      width: 600px;
+      height: 500px;
+      border: black  3px solid;
+    }
+    #b02{
+      width: 100px;
+      height: 50px;
+      border: black 3px solid;
+    }
+  </style>
+  <script>
+    window.onload = function(){
+      var b01 = document.getElementById("b01");
+      var b02 = document.getElementById("b02");
+      
+      b01.onmousemove = function(event){
+        event = window.event || event;
+        var x = event.clientX;
+        var y = event.clientY;
+        b02.innerHTML = "x:"+x+"y:"+y;
+      };
+    }
+  </script>
+</head>
+<body>
+  <div id="b01"></div>
+  <div id="b02"></div>
+</body>
+</html>

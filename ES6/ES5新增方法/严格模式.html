@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      "use strict";
+      // 下面的js代码会按照严格模式执行
+
+    </script>
+    <script>
+      //创建一个立即执行函数，在这种独立的作用域中使用严格模式
+      (function () {
+        "use strict";
+      })();
+    </script>
+    <script>
+      function fun1() {
+        "use strict";
+        //按以下语句照严格模式执行
+      }
+      function fun2() {
+        //按照普通模式执行
+      }
+    </script>
+  </body>
+</html>

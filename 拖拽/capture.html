@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        // box1.setCapture();
+        box1.onclick = function () {
+          alert("box1");
+        };
+        box2.onclick = function () {
+          alert("box2");
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <button id="box1">box1</button>
+    <button id="box2">box2</button>
+  </body>
+</html>

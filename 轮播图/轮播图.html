@@ -1,0 +1,118 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #box1 {
+        width: 520px;
+        height: 333px;
+        background-color: greenyellow;
+        margin: 50px auto;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #uList {
+        list-style: none;
+        left: 0px;
+        position: absolute;
+      }
+      #uList li {
+        float: left;
+        padding: 0 10px;
+      }
+      #nav {
+        position: absolute;
+        bottom: 15px;
+      }
+      #nav a {
+        float: left;
+        width: 15px;
+        height: 15px;
+        background-color: black;
+        margin: 0 5px;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+      }
+      #nav a:hover {
+        background-color: cornsilk;
+      }
+    </style>
+    <script src="tools.js"></script>
+    <script>
+      window.onload = function () {
+        var uList = document.getElementById("uList");
+        var img = document.getElementsByTagName("img");
+        uList.style.width = img.length * 520 + "px";
+        var nav = document.getElementById("nav");
+        nav.style.left = (box1.offsetWidth - nav.offsetWidth) / 2 + "px";
+        var allA = document.getElementsByTagName("a");
+        var index = 0; //全局变量
+        allA[index].style.backgroundColor = "cornsilk";
+
+        for (var i = 0; i < allA.length; i++) {
+          allA[i].num = i; //为每一个按钮添加一个标记
+          allA[i].onclick = function () {
+            clearInterval(timer);
+            index = this.num;
+            setA();
+            //开始切换图片
+            // uList.style.left = this.num*(-520)+'px';
+            move(uList, "left", -520 * this.num, 20, function () {
+              autoChange();  //因为前面关了自动切换的定时器，所以在会调函数里面重新调用
+            });
+          };
+        }
+            //调用自动切换函数
+        autoChange();
+        function setA() {
+          if(index >= img.length-1){  //img.length的值为6
+            index = 0;
+            uList.style.left = 0;    //使轮播图循环起来，将5张图片当作一个整体!!
+          }
+          
+          for (var i = 0; i < allA.length; i++) {
+            //将所有的颜色切换成默认颜色
+            allA[i].style.backgroundColor = "";  //赋值空字符串意义为将所有原本的颜色换成默认的颜色
+          }
+          allA[index].style.backgroundColor = "cornsilk"; //使被点击的a颜色为cornsilk
+        }
+        var timer;
+        function autoChange() {
+          timer = setInterval(() => {
+            index++;
+            index %= img.length;
+            move(uList, "left", index * -520, 20, function () {
+              setA();
+            });
+          }, 3000);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div id="box1">
+      <ul id="uList">       
+        <li><img src="img\1.jpg" alt="1" /></li>
+        <li><img src="img\2.jpg" alt="2" /></li>
+        <li><img src="img\3.jpg" alt="3" /></li>
+        <li><img src="img\4.jpg" alt="4" /></li>
+        <li><img src="img\5.jpg" alt="5" /></li>
+        <li><img src="img\1.jpg" alt="5" /></li>
+      </ul>
+      <div id="nav">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+      </div>
+    </div>
+  </body>
+</html>

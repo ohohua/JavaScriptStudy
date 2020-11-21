@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  window.onload = function(){
+    var btn1 = document.getElementById("btn1");
+    var u1 = document.getElementById("u1");
+    btn1.onclick = function(){
+      var li = document.createElement("li");
+      li.innerHTML = "<a href='javascript:;' class='link'>新增链接</a>";
+      u1.appendChild(li);
+
+    }
+    u1.onclick = function(event){
+
+      if(event.target.className == "link"){
+        alert("a");
+      }
+      alert("b");
+    }
+  }
+</script>
+<body>
+  <button id="btn1">增加链接</button>
+  <ul id="u1">
+    <li><a href="javascript:;" class="link">链接一</a></li>
+    <li><a href="javascript:;" class="link">链接二</a></li>
+    <li><a href="javascript:;" class="link">链接三</a></li>
+  </ul>
+</body>
+</html>

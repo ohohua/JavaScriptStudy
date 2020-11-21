@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var str = "adnilqwhuianwda";
+    //第一种写法
+    // var reg = new RegExp("a",i);
+    //第二种写法
+    var reg = /[a-z]/i;
+
+    /*参数： 第一个参数：正则表达式，需要检查的
+             第二个参数：匹配模式，可以是:
+                                        i,忽略大小写
+                                        g，全局匹配
+             语法二：
+                  var 变量 = /正则表达式/匹配模式
+                  
+    */
+    console.log(reg.test("a"));  //test(被检查的字符串)
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    class Father{
+      constructor(){
+        
+      }
+      say(){
+        console.log('我是Father');
+      }
+    }
+    class Son extends Father {
+      constructor(){
+        super();
+      }
+      say(){
+        super.say(); //调用父类中的say方法，实际上是实例化的儿子中的say方法
+      }
+      
+    }
+    var son = new Son();
+    son.say();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

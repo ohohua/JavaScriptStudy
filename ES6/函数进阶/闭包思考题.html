@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //  思考题1
+
+      var name = "the window";
+      var obj = {
+        name: "the obj",
+        getNameFun: function () {
+          return function () {
+            return this.name;
+          };
+        },
+      };
+      console.log(obj.getNameFun()());    // the window
+      
+      /* 
+        obj.getNameFun()()等价于：
+        var f = obj.getNameFun();
+        f = function () {
+            return this.name;
+          }
+        f();
+        
+        分析：
+        将obj.getNameFun()()拆分：
+
+        var f = obj.getNameFun();
+        然后：
+        f();
+        相当于：
+        function() {
+          return this.name;
+        }();  //立即执行函数
+        而此时this指向window
+
+        此时没有访问到局部变量name，所以没有闭包
+      */
+
+
+      //思考题2
+      var name2 = "the window";
+      var obj = {
+        name2: "the obj",
+        getNameFun: function () {
+          var that = this;
+          return function () {
+            return that.name2;
+          };
+        },
+      };
+      console.log(obj.getNameFun()());   // the obj  此时有闭包的产生
+    </script>
+  </body>
+</html>

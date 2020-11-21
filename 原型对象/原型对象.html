@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        function Person(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+        Person.prototype.sayName = function () {
+          alert("大家好，我是：" + this.name + ",今年" + this.age + "岁。");
+        };
+        Person.prototype.a = 123;
+        var person = new Person("孙悟空", 18);
+        console.log(person.sayName);
+        console.log(person.a);
+        console.log(person.__proto__.__proto__.__proto__); //null
+        console.log(person.__proto__.__proto__.hasOwnProperty);
+        //hasOwnProperty 该方法可以检查在某对象中是否含有某一属性，不包含原型对象
+        person.b = 789; //优先
+        person.__proto__.b = 1000;
+        console.log(person.b); //789
+        console.log(person.hasOwnProperty("a"));
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

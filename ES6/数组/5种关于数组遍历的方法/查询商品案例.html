@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        text-align: center;
+      }
+      table {
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        var tbody = document.querySelector("tbody");
+        var serach_price = document.querySelector(".search-price");
+        var search_pro = document.querySelector(".search-pro");
+        var product = document.querySelector(".product");
+        var start = document.querySelector(".start");
+        var end = document.querySelector(".end");
+        var data = [
+          {
+            id: 1,
+            name: "小米",
+            price: 3999,
+          },
+          {
+            id: 2,
+            name: "oppo",
+            price: 999,
+          },
+          {
+            id: 3,
+            name: "荣耀",
+            price: 1299,
+          },
+          {
+            id: 4,
+            name: "华为",
+            price: 1999,
+          },
+        ];
+        setData(data); //将数组中的数据添加到表格中
+
+        function setData(obj) {
+          //先清空原来的数据
+          tbody.innerHTML = "";
+          obj.forEach((element) => {
+            var tr = document.createElement("tr");
+            tr.innerHTML =
+              "<td>" +
+              element.id +
+              "</td><td>" +
+              element.name +
+              "</td><td>" +
+              element.price +
+              "</td>";
+            tbody.appendChild(tr);
+          });
+        }
+        //按照价格区间查询
+        serach_price.onclick = function () {
+          var newArr = data.filter((value) => {
+            return start.value <= value.price && end.value >= value.price;
+          });
+          setData(newArr);
+        };
+
+        
+        //按照商品名称查询，使用filter()
+        /*         search_pro.addEventListener(
+          "click",
+          function () {
+            var newArr2 = data.filter((value) => {
+              return product.value === value.name;
+            });
+            setData(newArr2);
+          },
+          false
+        ); */
+
+
+        //按照商品名称查询，使用some()-----这个方法效率更高
+        search_pro.addEventListener(
+          "click",
+          function () {
+            var arr = [];
+            data.some((value) => {
+              if (value.name === product.value) {
+                arr.push(value);
+                return true;
+              }
+            });
+            setData(arr);
+          },
+          false
+        );
+
+
+
+
+      };
+    </script>
+  </head>
+  <body>
+    <div class="search">
+      按照价格查询: <input type="text" class="start" /> -
+      <input type="text" class="end" />
+      <button class="search-price">查询</button> 按照商品名称查询:
+      <input type="text" class="product" />
+      <button class="search-pro">查询</button>
+    </div>
+    <table border="1px" width="816px">
+      <thead>
+        <tr>
+          <td>id</td>
+          <td>产品名称</td>
+          <td>价格</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>小米</td>
+          <td>3999</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>oppo</td>
+          <td>999</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>荣耀</td>
+          <td>1299</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>华为</td>
+          <td>1999</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </body>
+</html>

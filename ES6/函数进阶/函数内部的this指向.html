@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>事件调用函数</button>
+    <script>
+      // 1.普通函数 this指向window
+      function fn1() {
+        console.log("普通函数的this:" + this);
+      }
+      window.fn1(); //fn1.call();
+
+      // 2.对象的方法 this指向对象o
+      var obj = {
+        sayHi: function () {
+          console.log("sayHi中的this:"+this);
+        },
+      };
+      obj.sayHi();
+
+      // 3.构造函数 this指向ldh这个实例对象  原型对象中的this也是指向实例对象ldh 
+      function Star() {}
+      var ldh = new Star();
+      Star.prototype.sing = function(){}
+      
+      // 4.绑定事件函数 this指向的是函数的调用者是btn这个调用者
+      var btn = document.querySelector("button");
+      btn.onclick = function () {
+        console.log("绑定事件函数中的this:"+ this);
+      };
+      //点击按钮就可以调用这个函数
+
+      // 5.定时器函数 this指向函数的调用者window
+      setInterval("console.log(this)", 1000);
+        //这个函数是定时器自动一秒钟调用一次
+
+      // 6.立即执行函数 this和普通函数一样是指向window
+      (function () {
+        console.log("立即执行函数中的this:"+this);
+      })();
+        //立即执行函数是自动调用
+    </script>
+  </body>
+</html>

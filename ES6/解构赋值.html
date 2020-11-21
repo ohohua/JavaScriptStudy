@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1.数组解构
+      let [a, b, c] = [1, 2, 3];
+      console.log(a);
+      //结构不成功 值为undefined
+      let [d,e,f,g] = [4, 5, 5];
+      console.log(g); //undefined
+      
+      console.log('------------------------');
+      // 2.对象解构
+      let person = {
+        name:'zhangsan',
+        age:20
+      }
+      let {name, age} = person;
+      console.log(name);
+      console.log(age);
+      
+      console.log('对象匹配的另外一种写法');
+      let {name:myName, age: myAge} = person;
+      console.log(myName);
+      console.log(myAge);
+    </script>
+  </body>
+</html>

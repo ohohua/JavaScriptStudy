@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // some 查找数组中是否有满足条件的元素
+    // 有满足条件的 返回true  没有就返回false 
+    //查找数组中唯一的一个元素 使用some()更加合适，因为它找到这个元素之后就不再循环了，效率更高
+    //注意和every()对比
+    var arr = [10, 30, 4];
+    var newArr = arr.some(function(value){
+      return value > 15;
+    })
+    console.log(newArr);
+  </script>
+</body>
+</html>

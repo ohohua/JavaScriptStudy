@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //filter 将所有满足条件的作为一个数组返回
+      var arr = [11, 2, 31, 23, 1];
+      //箭头函数写法     (参数  => {返回的代码块}
+      //1.只包含一个表达式，这时花括号和return都省略了。
+      //2.包含多条语句，这时花括号和return都不能省略。
+      var newArr = arr.filter(
+        value => value > 20
+      );
+      console.log(newArr);
+      //普通写法
+      var newArr2 = arr.filter(function (value) {
+        return value > 20;
+      });
+      console.log(newArr2);
+    </script>
+  </body>
+</html>

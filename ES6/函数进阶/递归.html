@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //死递归
+      /*     function fn() {
+      fn();
+    }
+    fn(); */
+
+      //递归和for循环类似，必须要加上退出条件return
+      var num = 1;
+      function fn() {
+        console.log("打印4句话");
+        if (num == 4) {
+          return;
+        }
+        num++;
+        fn();
+      }
+      fn();
+
+      //递归求阶乘
+      function fun(n) {
+        if( n === 1){
+          return 1;
+        }
+        return fun(n - 1) * n;
+      }
+      console.log('递归：'+fun(3)); 
+    </script>
+  </body>
+</html>

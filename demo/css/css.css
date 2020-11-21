@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+#container {
+  height: 1000px;
+  width: 100%;
+}
+#advertisement a {
+  height: 130px;
+  width: 1520px;
+  display: inline-block;
+}
+#nav {
+  background-color: #382424;
+  height: 40px;
+  width: auto;
+  position: relative;
+  top: -3px;
+}
+#nav-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 810px;
+  padding-left: 100px;
+  
+}
+#nav-left a {
+  display: inline;
+  color: #b0b0b0;
+  text-decoration: none;
+  font-size: small;
+}
+#nav-left a:hover {
+  color: aliceblue;
+}
+#nav-right{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 100px;
+}
+#nav-right a{
+  font-size: small;
+  display: inline;
+  color: #b0b0b0;
+  text-decoration: none;
+}
+#nav-right a:hover {
+  color: aliceblue;
+}
+#header{
+  position: relative;
+  width: 1520px;
+  height: 71px;
+}
+#header-logo{
+  position: relative;
+  height: 68px;
+  width: 67px;
+  left: 100px;
+}
+#header-nav{
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  right: 500px;
+  
+}
+#header-nav li {
+  list-style: none; 
+  color: black;
+  text-align: center;
+  display: inline-block;
+  height: 30px;
+  width: 82px;
+}
+#header-nav ul{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#header-nav ul li a:hover{
+  color: orangered;
+}
+#header-nav a{
+  text-decoration: none;
+  color: #382424;
+}
+#header-search{
+  position: absolute;
+  height: 50px;
+  width: 400px;
+  right: 100px;
+  top: 10px;
+}
+#header-search input{
+  position: absolute;
+  font-size: 15px;
+  height: 50px;
+  right: 65px;
+}
+#header-search img{
+  position: absolute;
+  right: 10px;
+  height: 50px;
+}
+#header-drop{
+  width: 1520px;
+  position: absolute;
+  top: 70px;
+  background-color:whitesmoke;
+}
+#header-drop ul{
+  display: none;
+  position: relative;
+  left: 150px;
+  top: 20px;
+}
+#header-drop ul li{
+  list-style: none;
+  display: inline;
+}
+#centre{
+  position: relative;
+}
+#box1 {
+  width: 1226px;
+  height: 460px;
+  /* background-color: greenyellow; */
+  margin: 0 auto;
+  /* top: 200px; */
+  z-index: -2;
+  position: relative;
+  overflow: hidden;
+}
+#uList {
+  list-style: none;
+  /* left: 0px; */
+  position: absolute;
+}
+#uList li {
+  float: left;
+  /* padding: 0 10px; */
+}
+#nav2 {
+  position: absolute;
+  bottom: 15px;
+}
+#nav2 a {
+  float: left;
+  width: 15px;
+  height: 15px;
+  background-color: black;
+  margin: 0 5px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+#nav2 a:hover {
+  background-color: cornsilk;
+}

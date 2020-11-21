@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      //将类数组和可遍历对象转为数组的另外一种方法  
+      /*
+         Array.from()
+          参数：1.需要转化的类数组或者可遍历的对象
+                2.function(){}  类似与map方法
+          ex:
+            let newArr = Array.from(arrLike,item => item * 2);
+      */
+      let arrayLike = {
+        '0':'云长',
+        '1':'11',
+        '2': '王世充',
+        length:2
+      }
+
+      let arr2 = Array.from(arrayLike);
+      console.log(arr2);
+
+      let arrLike2 = {
+        '0': 1,
+        '1': 2,
+        '2': 3,
+        '3': 4,
+        length:4      //规定长度为4
+      }
+      let newArr = Array.from(arrLike2,item => item * 2);
+      // let newArr1 = Array.from(arrayLike,item => item * 2);
+      console.log(newArr);
+      // console.log(newArr1);
+  </script>
+</body>
+</html>

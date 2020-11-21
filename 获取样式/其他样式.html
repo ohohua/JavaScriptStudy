@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #info {
+        width: 300px;
+        height: 600px;
+        background-color: greenyellow;
+        overflow: auto;
+      }
+    </style>
+    <script>
+      window.onclick = function () {
+        var info = document.getElementById("info");
+        // alert(info.scrollTop); //scrollTop:419.20001220703125   scrollHeight:1019  clientHeight :600
+        info.onscroll = function () {
+          alert("我滚了");
+          // if (parseInt(scrollTop) == parseInt(419.20001220703125)) {
+          //   info.scrollHeight - info.clientHeight == info.scrollTop
+          //   var btn = document.getElementById("btn01");
+          //   var input1 = document.getElementsByName[0];
+          //   btn.disabled = false;
+          //   input1.disabled = false;
+          //   alert("到底");
+          // }
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <h3>请阅读用户协议</h3>
+    <p id="info">
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+      请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议请遵守用户协议
+    </p>
+    <input type="checkbox" disabled="disabled" name="input1" />我已阅读协议
+    <button id="btn01" disabled="disabled">注册</button>
+  </body>
+</html>

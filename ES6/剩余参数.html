@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>剩余参数</title>
+  </head>
+  <body>
+    <script>
+      //...y 表示传入的参数将会作为一个数组保存在y[]中
+      const sum = (...y) => {
+        console.log(y);
+        let total = 0;
+        y.forEach(element => total += element);
+        return total;
+      };
+      console.log(sum(1, 2));
+      console.log(sum(1, 2, 3));
+    </script>
+  </body>
+</html>

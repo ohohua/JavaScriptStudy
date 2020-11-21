@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+          // 1.创建一个promise对象
+          const p = new Promise(resolve => {
+        // 执行器函数 这是一个同步回调
+        console.log('1');
+        // 2.执行异步函数
+        setTimeout(() => {
+          console.log('2');
+          resolve(5);
+        }, 1000);
+      });
+      console.log('3');
+      p.then(
+        (value) => {
+          //接收得到成功的value数据      onResolved
+          console.log(value);
+        }
+      );
+        console.log('6');
+
+
+      /*
+        输出结果：1 3 6 2 5
+        执行过程：
+              1.promise创建立即执行，打印1
+              2.遇到setTimeout，进入宏任务队列
+              3.遇到console.log('3'),打印3
+              4.遇到console.log('6'),打印6
+              5.无可执行的微任务(因为resolve在setTimeout里面)
+              6.开始执行宏任务setTimeout，打印2
+              7.有可执行的微任务p.then,打印5
+        注意：
+            本来在输出6的时候就应该执行p.then,
+            但是由于这里的resolve在定时器setTimeout里面，
+            promise.then等待resolve()才能执行
+            (简而言之，就是现在的微任务不可执行)
+       */
+
+        /*
+       宏任务
+        (macrotask)（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）。
+       微任务
+         microtask（又称为微任务），可以理解是在当前 task(包括同步任务) 执行结束后立即执行的任务。也就是说，在当前task任务后，下一个task之前，在渲染之前。
+
+        主要宏任务：整段脚本script setTimeout setInterval、I/O UI交互事件 postMessage MessageChannel setImmediate(Node.js 环境)
+        主要微任务：promise.then catch finally  process.nextTick(Node使用) MutationObserver（浏览器使用）
+        */
+        /*
+          宏任务和微任务执行流程：
+          整段脚本script作为宏任务开始执行遇到微任务将其推入微任务队列，
+          宏任务推入宏任务队列宏任务执行完毕，检查有没有可执行的微任务发现有可执行的微任务，
+          将所有微任务执行完毕当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染渲染完毕后，
+          JS线程继续接管，开始新的宏任务，反复如此直到所有任务执行完毕
+
+          注意点：
+            Promise和async中的立即执行
+            我们知道Promise中的异步体现在then和catch中，所以写在Promise中的代码是被当做同步任务立即执行的。
+            而在async/await中，在出现await出现之前，其中的代码也是立即执行的。那么出现了await时候发生了什么呢？
+
+         */
+    </script>
+  </body>
+</html>
